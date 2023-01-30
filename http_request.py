@@ -4,5 +4,5 @@ import requests, json
 #print(resutl.content)
 
 def handle(data):
-    resutl = requests.get(datap['url'], verify=False) # verify=False
+    resutl = requests.get(data['url'], verify=False) # verify=False
     return json.loads(resutl.content.decode("utf-8"))
