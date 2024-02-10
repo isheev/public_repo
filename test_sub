@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Subscription Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .link-input {
+            margin-bottom: 10px;
+        }
+
+        .copy-button {
+            margin-left: 10px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .limited {
+            background-color: #F44336;
+            color: white;
+        }
+
+        .expired {
+            background-color: #FF9800;
+            color: white;
+        }
+
+        .disabled {
+            background-color: #9E9E9E;
+            color: white;
+        }
+
+        .qr-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 10px 25px 25px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 9999;
+        }
+
+        .qr-close-button {
+            text-align: right;
+            margin-bottom: 5px;
+            margin-right: -15px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+    <h1>User Information</h1>
+    <p>Username: 4419308</p>
+    <p>Status: <span
+            class="status active">active</span></p>
+    <p>Data Limit: 100.0 GB</p>
+    <p>Data Used: 0 B (resets
+        every day)</p>
+    <p>Expiration Date:
+        
+        
+        
+        2024-02-11 21:00:00 (1 days
+        remaining)
+        </p>
+
+    
+    <h2>Links:</h2>
+    <ul>
+        
+        <li>
+            <input type="text" value="vmess://eyJhZGQiOiAiYml6dnBuLm9ubGluZSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ0Y3AiLCAicGF0aCI6ICIvIiwgInBvcnQiOiA4MDgxLCAicHMiOiAiXHVkODNjXHVkZGYyXHVkODNjXHVkZGU5TW9sZG92YVt0Y3BdIFx1ZDgzZFx1ZGNjNlx1MDQzNFx1MDQzZFx1MDQzNVx1MDQzOToyKDQ0MTkzMDgpIiwgInNjeSI6ICJhdXRvIiwgInRscyI6ICJub25lIiwgInR5cGUiOiAiaHR0cCIsICJ2IjogIjIifQ==" readonly>
+            <button class="copy-button" onclick="copyLink('vmess://eyJhZGQiOiAiYml6dnBuLm9ubGluZSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ0Y3AiLCAicGF0aCI6ICIvIiwgInBvcnQiOiA4MDgxLCAicHMiOiAiXHVkODNjXHVkZGYyXHVkODNjXHVkZGU5TW9sZG92YVt0Y3BdIFx1ZDgzZFx1ZGNjNlx1MDQzNFx1MDQzZFx1MDQzNVx1MDQzOToyKDQ0MTkzMDgpIiwgInNjeSI6ICJhdXRvIiwgInRscyI6ICJub25lIiwgInR5cGUiOiAiaHR0cCIsICJ2IjogIjIifQ==', this)">Copy</button>
+            <button class="qr-button" data-link="vmess://eyJhZGQiOiAiYml6dnBuLm9ubGluZSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ0Y3AiLCAicGF0aCI6ICIvIiwgInBvcnQiOiA4MDgxLCAicHMiOiAiXHVkODNjXHVkZGYyXHVkODNjXHVkZGU5TW9sZG92YVt0Y3BdIFx1ZDgzZFx1ZGNjNlx1MDQzNFx1MDQzZFx1MDQzNVx1MDQzOToyKDQ0MTkzMDgpIiwgInNjeSI6ICJhdXRvIiwgInRscyI6ICJub25lIiwgInR5cGUiOiAiaHR0cCIsICJ2IjogIjIifQ==">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="vmess://eyJhZGQiOiAibmFzaHZwbi5zdSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ0Y3AiLCAicGF0aCI6ICIvIiwgInBvcnQiOiA4MDgxLCAicHMiOiAiXHVkODNjXHVkZGYzXHVkODNjXHVkZGYxTmV0aGVybGFuZHNbdGNwXSBcdWQ4M2RcdWRjYzZcdTA0MzRcdTA0M2RcdTA0MzVcdTA0Mzk6MiIsICJzY3kiOiAiYXV0byIsICJ0bHMiOiAibm9uZSIsICJ0eXBlIjogImh0dHAiLCAidiI6ICIyIn0=" readonly>
+            <button class="copy-button" onclick="copyLink('vmess://eyJhZGQiOiAibmFzaHZwbi5zdSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ0Y3AiLCAicGF0aCI6ICIvIiwgInBvcnQiOiA4MDgxLCAicHMiOiAiXHVkODNjXHVkZGYzXHVkODNjXHVkZGYxTmV0aGVybGFuZHNbdGNwXSBcdWQ4M2RcdWRjYzZcdTA0MzRcdTA0M2RcdTA0MzVcdTA0Mzk6MiIsICJzY3kiOiAiYXV0byIsICJ0bHMiOiAibm9uZSIsICJ0eXBlIjogImh0dHAiLCAidiI6ICIyIn0=', this)">Copy</button>
+            <button class="qr-button" data-link="vmess://eyJhZGQiOiAibmFzaHZwbi5zdSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ0Y3AiLCAicGF0aCI6ICIvIiwgInBvcnQiOiA4MDgxLCAicHMiOiAiXHVkODNjXHVkZGYzXHVkODNjXHVkZGYxTmV0aGVybGFuZHNbdGNwXSBcdWQ4M2RcdWRjYzZcdTA0MzRcdTA0M2RcdTA0MzVcdTA0Mzk6MiIsICJzY3kiOiAiYXV0byIsICJ0bHMiOiAibm9uZSIsICJ0eXBlIjogImh0dHAiLCAidiI6ICIyIn0=">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="vmess://eyJhZGQiOiAiYml6dnBuLnJ1IiwgImFpZCI6ICIwIiwgImhvc3QiOiAiZ29vZ2xlLmNvbSIsICJpZCI6ICIzM2I5NGE3NC03NTBjLTRhYzQtYmM3ZS0wMzYwNTM4ZTU3YzEiLCAibmV0IjogInRjcCIsICJwYXRoIjogIi8iLCAicG9ydCI6IDgwODEsICJwcyI6ICJcdWQ4M2NcdWRkZjdcdWQ4M2NcdWRkZmFSdXNzaWFbdGNwXSBcdWQ4M2RcdWRjYzZcdTA0MzRcdTA0M2RcdTA0MzVcdTA0Mzk6MiIsICJzY3kiOiAiYXV0byIsICJ0bHMiOiAibm9uZSIsICJ0eXBlIjogImh0dHAiLCAidiI6ICIyIn0=" readonly>
+            <button class="copy-button" onclick="copyLink('vmess://eyJhZGQiOiAiYml6dnBuLnJ1IiwgImFpZCI6ICIwIiwgImhvc3QiOiAiZ29vZ2xlLmNvbSIsICJpZCI6ICIzM2I5NGE3NC03NTBjLTRhYzQtYmM3ZS0wMzYwNTM4ZTU3YzEiLCAibmV0IjogInRjcCIsICJwYXRoIjogIi8iLCAicG9ydCI6IDgwODEsICJwcyI6ICJcdWQ4M2NcdWRkZjdcdWQ4M2NcdWRkZmFSdXNzaWFbdGNwXSBcdWQ4M2RcdWRjYzZcdTA0MzRcdTA0M2RcdTA0MzVcdTA0Mzk6MiIsICJzY3kiOiAiYXV0byIsICJ0bHMiOiAibm9uZSIsICJ0eXBlIjogImh0dHAiLCAidiI6ICIyIn0=', this)">Copy</button>
+            <button class="qr-button" data-link="vmess://eyJhZGQiOiAiYml6dnBuLnJ1IiwgImFpZCI6ICIwIiwgImhvc3QiOiAiZ29vZ2xlLmNvbSIsICJpZCI6ICIzM2I5NGE3NC03NTBjLTRhYzQtYmM3ZS0wMzYwNTM4ZTU3YzEiLCAibmV0IjogInRjcCIsICJwYXRoIjogIi8iLCAicG9ydCI6IDgwODEsICJwcyI6ICJcdWQ4M2NcdWRkZjdcdWQ4M2NcdWRkZmFSdXNzaWFbdGNwXSBcdWQ4M2RcdWRjYzZcdTA0MzRcdTA0M2RcdTA0MzVcdTA0Mzk6MiIsICJzY3kiOiAiYXV0byIsICJ0bHMiOiAibm9uZSIsICJ0eXBlIjogImh0dHAiLCAidiI6ICIyIn0=">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="vmess://eyJhZGQiOiAiYml6dnBuLm9ubGluZSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ3cyIsICJwYXRoIjogIi8iLCAicG9ydCI6IDgwODAsICJwcyI6ICJcdWQ4M2NcdWRkZjJcdWQ4M2NcdWRkZTlNb2xkb3ZhW3dzXSBcdWQ4M2RcdWRjYzZcdTA0MzRcdTA0M2RcdTA0MzVcdTA0Mzk6MiIsICJzY3kiOiAiYXV0byIsICJ0bHMiOiAibm9uZSIsICJ0eXBlIjogIiIsICJ2IjogIjIifQ==" readonly>
+            <button class="copy-button" onclick="copyLink('vmess://eyJhZGQiOiAiYml6dnBuLm9ubGluZSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ3cyIsICJwYXRoIjogIi8iLCAicG9ydCI6IDgwODAsICJwcyI6ICJcdWQ4M2NcdWRkZjJcdWQ4M2NcdWRkZTlNb2xkb3ZhW3dzXSBcdWQ4M2RcdWRjYzZcdTA0MzRcdTA0M2RcdTA0MzVcdTA0Mzk6MiIsICJzY3kiOiAiYXV0byIsICJ0bHMiOiAibm9uZSIsICJ0eXBlIjogIiIsICJ2IjogIjIifQ==', this)">Copy</button>
+            <button class="qr-button" data-link="vmess://eyJhZGQiOiAiYml6dnBuLm9ubGluZSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ3cyIsICJwYXRoIjogIi8iLCAicG9ydCI6IDgwODAsICJwcyI6ICJcdWQ4M2NcdWRkZjJcdWQ4M2NcdWRkZTlNb2xkb3ZhW3dzXSBcdWQ4M2RcdWRjYzZcdTA0MzRcdTA0M2RcdTA0MzVcdTA0Mzk6MiIsICJzY3kiOiAiYXV0byIsICJ0bHMiOiAibm9uZSIsICJ0eXBlIjogIiIsICJ2IjogIjIifQ==">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="vmess://eyJhZGQiOiAibmFzaHZwbi5zdSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ3cyIsICJwYXRoIjogIi8iLCAicG9ydCI6IDgwODAsICJwcyI6ICJcdWQ4M2NcdWRkZjNcdWQ4M2NcdWRkZjFOZXRoZXJsYW5kc1t3c10gXHVkODNkXHVkY2M2XHUwNDM0XHUwNDNkXHUwNDM1XHUwNDM5OjIiLCAic2N5IjogImF1dG8iLCAidGxzIjogIm5vbmUiLCAidHlwZSI6ICIiLCAidiI6ICIyIn0=" readonly>
+            <button class="copy-button" onclick="copyLink('vmess://eyJhZGQiOiAibmFzaHZwbi5zdSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ3cyIsICJwYXRoIjogIi8iLCAicG9ydCI6IDgwODAsICJwcyI6ICJcdWQ4M2NcdWRkZjNcdWQ4M2NcdWRkZjFOZXRoZXJsYW5kc1t3c10gXHVkODNkXHVkY2M2XHUwNDM0XHUwNDNkXHUwNDM1XHUwNDM5OjIiLCAic2N5IjogImF1dG8iLCAidGxzIjogIm5vbmUiLCAidHlwZSI6ICIiLCAidiI6ICIyIn0=', this)">Copy</button>
+            <button class="qr-button" data-link="vmess://eyJhZGQiOiAibmFzaHZwbi5zdSIsICJhaWQiOiAiMCIsICJob3N0IjogImdvb2dsZS5jb20iLCAiaWQiOiAiMzNiOTRhNzQtNzUwYy00YWM0LWJjN2UtMDM2MDUzOGU1N2MxIiwgIm5ldCI6ICJ3cyIsICJwYXRoIjogIi8iLCAicG9ydCI6IDgwODAsICJwcyI6ICJcdWQ4M2NcdWRkZjNcdWQ4M2NcdWRkZjFOZXRoZXJsYW5kc1t3c10gXHVkODNkXHVkY2M2XHUwNDM0XHUwNDNkXHUwNDM1XHUwNDM5OjIiLCAic2N5IjogImF1dG8iLCAidGxzIjogIm5vbmUiLCAidHlwZSI6ICIiLCAidiI6ICIyIn0=">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="vmess://eyJhZGQiOiAiYml6dnBuLnJ1IiwgImFpZCI6ICIwIiwgImhvc3QiOiAiZ29vZ2xlLmNvbSIsICJpZCI6ICIzM2I5NGE3NC03NTBjLTRhYzQtYmM3ZS0wMzYwNTM4ZTU3YzEiLCAibmV0IjogIndzIiwgInBhdGgiOiAiLyIsICJwb3J0IjogODA4MCwgInBzIjogIlx1ZDgzY1x1ZGRmN1x1ZDgzY1x1ZGRmYVJ1c3NpYVt3c10gXHVkODNkXHVkY2M2XHUwNDM0XHUwNDNkXHUwNDM1XHUwNDM5OjIiLCAic2N5IjogImF1dG8iLCAidGxzIjogIm5vbmUiLCAidHlwZSI6ICIiLCAidiI6ICIyIn0=" readonly>
+            <button class="copy-button" onclick="copyLink('vmess://eyJhZGQiOiAiYml6dnBuLnJ1IiwgImFpZCI6ICIwIiwgImhvc3QiOiAiZ29vZ2xlLmNvbSIsICJpZCI6ICIzM2I5NGE3NC03NTBjLTRhYzQtYmM3ZS0wMzYwNTM4ZTU3YzEiLCAibmV0IjogIndzIiwgInBhdGgiOiAiLyIsICJwb3J0IjogODA4MCwgInBzIjogIlx1ZDgzY1x1ZGRmN1x1ZDgzY1x1ZGRmYVJ1c3NpYVt3c10gXHVkODNkXHVkY2M2XHUwNDM0XHUwNDNkXHUwNDM1XHUwNDM5OjIiLCAic2N5IjogImF1dG8iLCAidGxzIjogIm5vbmUiLCAidHlwZSI6ICIiLCAidiI6ICIyIn0=', this)">Copy</button>
+            <button class="qr-button" data-link="vmess://eyJhZGQiOiAiYml6dnBuLnJ1IiwgImFpZCI6ICIwIiwgImhvc3QiOiAiZ29vZ2xlLmNvbSIsICJpZCI6ICIzM2I5NGE3NC03NTBjLTRhYzQtYmM3ZS0wMzYwNTM4ZTU3YzEiLCAibmV0IjogIndzIiwgInBhdGgiOiAiLyIsICJwb3J0IjogODA4MCwgInBzIjogIlx1ZDgzY1x1ZGRmN1x1ZDgzY1x1ZGRmYVJ1c3NpYVt3c10gXHVkODNkXHVkY2M2XHUwNDM0XHUwNDNkXHUwNDM1XHUwNDM5OjIiLCAic2N5IjogImF1dG8iLCAidGxzIjogIm5vbmUiLCAidHlwZSI6ICIiLCAidiI6ICIyIn0=">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.online:443?security=reality&type=tcp&headerType=&flow=xtls-rprx-vision&path=&host=&sni=yandex.ru&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B2%F0%9F%87%A9Moldova%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2" readonly>
+            <button class="copy-button" onclick="copyLink('vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.online:443?security=reality&type=tcp&headerType=&flow=xtls-rprx-vision&path=&host=&sni=yandex.ru&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B2%F0%9F%87%A9Moldova%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2', this)">Copy</button>
+            <button class="qr-button" data-link="vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.online:443?security=reality&type=tcp&headerType=&flow=xtls-rprx-vision&path=&host=&sni=yandex.ru&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B2%F0%9F%87%A9Moldova%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="vless://920ae094-8170-4491-8591-5a5ec55c3c32@nashvpn.su:443?security=reality&type=tcp&headerType=&flow=xtls-rprx-vision&path=&host=&sni=mirror.yandex.ru&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B3%F0%9F%87%B1Netherlands%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2" readonly>
+            <button class="copy-button" onclick="copyLink('vless://920ae094-8170-4491-8591-5a5ec55c3c32@nashvpn.su:443?security=reality&type=tcp&headerType=&flow=xtls-rprx-vision&path=&host=&sni=mirror.yandex.ru&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B3%F0%9F%87%B1Netherlands%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2', this)">Copy</button>
+            <button class="qr-button" data-link="vless://920ae094-8170-4491-8591-5a5ec55c3c32@nashvpn.su:443?security=reality&type=tcp&headerType=&flow=xtls-rprx-vision&path=&host=&sni=mirror.yandex.ru&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B3%F0%9F%87%B1Netherlands%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.ru:443?security=reality&type=tcp&headerType=&flow=xtls-rprx-vision&path=&host=&sni=yandex.ru&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B7%F0%9F%87%BARussia%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2" readonly>
+            <button class="copy-button" onclick="copyLink('vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.ru:443?security=reality&type=tcp&headerType=&flow=xtls-rprx-vision&path=&host=&sni=yandex.ru&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B7%F0%9F%87%BARussia%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2', this)">Copy</button>
+            <button class="qr-button" data-link="vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.ru:443?security=reality&type=tcp&headerType=&flow=xtls-rprx-vision&path=&host=&sni=yandex.ru&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B7%F0%9F%87%BARussia%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.online:2053?security=reality&type=grpc&headerType=&serviceName=xyz&host=&sni=discordapp.com&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B2%F0%9F%87%A9Moldova%5Bgrpc%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2" readonly>
+            <button class="copy-button" onclick="copyLink('vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.online:2053?security=reality&type=grpc&headerType=&serviceName=xyz&host=&sni=discordapp.com&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B2%F0%9F%87%A9Moldova%5Bgrpc%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2', this)">Copy</button>
+            <button class="qr-button" data-link="vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.online:2053?security=reality&type=grpc&headerType=&serviceName=xyz&host=&sni=discordapp.com&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B2%F0%9F%87%A9Moldova%5Bgrpc%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="vless://920ae094-8170-4491-8591-5a5ec55c3c32@nashvpn.su:2053?security=reality&type=grpc&headerType=&serviceName=xyz&host=&sni=cdn.discordapp.com&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B3%F0%9F%87%B1Netherlands%5Bgrpc%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2" readonly>
+            <button class="copy-button" onclick="copyLink('vless://920ae094-8170-4491-8591-5a5ec55c3c32@nashvpn.su:2053?security=reality&type=grpc&headerType=&serviceName=xyz&host=&sni=cdn.discordapp.com&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B3%F0%9F%87%B1Netherlands%5Bgrpc%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2', this)">Copy</button>
+            <button class="qr-button" data-link="vless://920ae094-8170-4491-8591-5a5ec55c3c32@nashvpn.su:2053?security=reality&type=grpc&headerType=&serviceName=xyz&host=&sni=cdn.discordapp.com&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B3%F0%9F%87%B1Netherlands%5Bgrpc%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.ru:2053?security=reality&type=grpc&headerType=&serviceName=xyz&host=&sni=discordapp.com&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B7%F0%9F%87%BARussia%5Bgrpc%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2" readonly>
+            <button class="copy-button" onclick="copyLink('vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.ru:2053?security=reality&type=grpc&headerType=&serviceName=xyz&host=&sni=discordapp.com&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B7%F0%9F%87%BARussia%5Bgrpc%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2', this)">Copy</button>
+            <button class="qr-button" data-link="vless://920ae094-8170-4491-8591-5a5ec55c3c32@bizvpn.ru:2053?security=reality&type=grpc&headerType=&serviceName=xyz&host=&sni=discordapp.com&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=&spx=#%F0%9F%87%B7%F0%9F%87%BARussia%5Bgrpc%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMUEpvYmk2RnRQTnZxb1NhaDJwWDlB@bizvpn.online:1080#%F0%9F%87%B2%F0%9F%87%A9Moldova%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2" readonly>
+            <button class="copy-button" onclick="copyLink('ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMUEpvYmk2RnRQTnZxb1NhaDJwWDlB@bizvpn.online:1080#%F0%9F%87%B2%F0%9F%87%A9Moldova%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2', this)">Copy</button>
+            <button class="qr-button" data-link="ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMUEpvYmk2RnRQTnZxb1NhaDJwWDlB@bizvpn.online:1080#%F0%9F%87%B2%F0%9F%87%A9Moldova%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMUEpvYmk2RnRQTnZxb1NhaDJwWDlB@nashvpn.su:1080#%F0%9F%87%B3%F0%9F%87%B1Netherlands%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2" readonly>
+            <button class="copy-button" onclick="copyLink('ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMUEpvYmk2RnRQTnZxb1NhaDJwWDlB@nashvpn.su:1080#%F0%9F%87%B3%F0%9F%87%B1Netherlands%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2', this)">Copy</button>
+            <button class="qr-button" data-link="ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMUEpvYmk2RnRQTnZxb1NhaDJwWDlB@nashvpn.su:1080#%F0%9F%87%B3%F0%9F%87%B1Netherlands%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2">QR Code</button>
+        </li>
+        
+        <li>
+            <input type="text" value="ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMUEpvYmk2RnRQTnZxb1NhaDJwWDlB@bizvpn.ru:1080#%F0%9F%87%B7%F0%9F%87%BARussia%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2" readonly>
+            <button class="copy-button" onclick="copyLink('ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMUEpvYmk2RnRQTnZxb1NhaDJwWDlB@bizvpn.ru:1080#%F0%9F%87%B7%F0%9F%87%BARussia%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2', this)">Copy</button>
+            <button class="qr-button" data-link="ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMUEpvYmk2RnRQTnZxb1NhaDJwWDlB@bizvpn.ru:1080#%F0%9F%87%B7%F0%9F%87%BARussia%5Btcp%5D%20%F0%9F%93%86%D0%B4%D0%BD%D0%B5%D0%B9%3A2">QR Code</button>
+        </li>
+        
+    </ul>
+    <div class="qr-popup" id="qrPopup">
+        <div class="qr-close-button">
+            <button onclick="closeQrPopup()">X</button>
+        </div>
+        <div id="qrCodeContainer"></div>
+    </div>
+    
+
+    <script>
+        function copyLink(link, button) {
+            const tempInput = document.createElement('input');
+            tempInput.setAttribute('value', link);
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            button.textContent = 'Copied!';
+            setTimeout(function () {
+                button.textContent = 'Copy';
+            }, 1500);
+        }
+
+        const qrButtons = document.querySelectorAll('.qr-button');
+        const qrPopup = document.getElementById('qrPopup');
+
+        qrButtons.forEach((qrButton) => {
+            qrButton.addEventListener('click', () => {
+                const link = qrButton.dataset.link;
+                while (qrCodeContainer.firstChild) {
+                    qrCodeContainer.removeChild(qrCodeContainer.firstChild);
+                }
+                const qrCode = new QRCode(qrCodeContainer, {
+                    text: link,
+                    width: 256,
+                    height: 256
+                });
+                qrPopup.style.display = 'block';
+            });
+        });
+        function closeQrPopup() {
+            document.getElementById('qrPopup').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
