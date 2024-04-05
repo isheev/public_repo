@@ -8,7 +8,61 @@
           "id": "de-fr-01",
           "city": "Frankfurt",
           "ipAddress": "192.168.10.1",
-          "ss_key": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpwcHpMZUZkaGpxVjltN0p5WDVXSHVE@dh-cl1-sl158.mydom.top:15811#DeepHoleVPN"
+          "ss_key": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpwcHpMZUZkaGpxVjltN0p5WDVXSHVE@dh-cl1-sl158.mydom.top:15811#VPN1",
+          "config": {
+  "inbounds" : [
+    {
+      "listen" : "127.0.0.1",
+      "port" : 1080,
+      "protocol" : "socks",
+      "settings" : {
+        "auth" : "noauth",
+        "udp" : true
+      },
+      "sniffing" : {
+        "destOverride" : [
+          "http",
+          "tls",
+          "quic",
+          "fakedns"
+        ],
+        "enabled" : false,
+        "routeOnly" : true
+      },
+      "tag" : "socks"
+    }
+  ],
+  "outbounds" : [
+    {
+      "protocol" : "shadowsocks",
+      "settings" : {
+        "servers" : [
+          {
+            "address" : "dh-cl1-sl158.mydom.top",
+            "method" : "chacha20-ietf-poly1305",
+            "password" : "ppzLeFdhjqV9m7JyX5WHuD",
+            "port" : 15811
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "tcpSettings" : {
+
+        }
+      },
+      "tag" : "proxy"
+    },
+    {
+      "protocol" : "freedom",
+      "tag" : "direct"
+    },
+    {
+      "protocol" : "blackhole",
+      "tag" : "block"
+    }
+  ]
+}
         }
       ]
     },
@@ -20,7 +74,61 @@
           "id": "ca-to-01",
           "city": "Toronto",
           "ipAddress": "ol-cl1-sl1.mydom.top",
-          "vless_key": "vless://945098bf-d99f-41f3-a947-83c82a8a46f8@ol-cl1-sl1.mydom.top:443?flow=xtls-rprx-vision&type=tcp&security=reality&fp=chrome&sni=www.youtube.com&pbk=rVMwL16cTklX7YTJ6UiUuxOgw2zu_rjbzGkLaIcPeAE&sid=aba540ca49293d77&spx=#DeepHoleVPN"
+          "vless_key": "vless://945098bf-d99f-41f3-a947-83c82a8a46f8@ol-cl1-sl1.mydom.top:443?flow=xtls-rprx-vision&type=tcp&security=reality&fp=chrome&sni=www.youtube.com&pbk=rVMwL16cTklX7YTJ6UiUuxOgw2zu_rjbzGkLaIcPeAE&sid=aba540ca49293d77&spx=#VPN1",
+          "config": {
+  "inbounds" : [
+    {
+      "listen" : "127.0.0.1",
+      "port" : 1080,
+      "protocol" : "socks",
+      "settings" : {
+        "auth" : "noauth",
+        "udp" : true
+      },
+      "sniffing" : {
+        "destOverride" : [
+          "http",
+          "tls",
+          "quic",
+          "fakedns"
+        ],
+        "enabled" : false,
+        "routeOnly" : true
+      },
+      "tag" : "socks"
+    }
+  ],
+  "outbounds" : [
+    {
+      "protocol" : "shadowsocks",
+      "settings" : {
+        "servers" : [
+          {
+            "address" : "dh-cl1-sl110.mydom.top",
+            "method" : "chacha20-ietf-poly1305",
+            "password" : "ppzLeFdhjqV9m7JyX5WHuD",
+            "port" : 15811
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "tcpSettings" : {
+
+        }
+      },
+      "tag" : "proxy"
+    },
+    {
+      "protocol" : "freedom",
+      "tag" : "direct"
+    },
+    {
+      "protocol" : "blackhole",
+      "tag" : "block"
+    }
+  ]
+}
         }
       ]
     }
