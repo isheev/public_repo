@@ -10,58 +10,61 @@
           "ipAddress": "192.168.10.1",
           "ss_key": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpwcHpMZUZkaGpxVjltN0p5WDVXSHVE@dh-cl1-sl158.mydom.top:15811#VPN1",
           "config": {
-  "inbounds" : [
-    {
-      "listen" : "127.0.0.1",
-      "port" : 1080,
-      "protocol" : "socks",
-      "settings" : {
-        "auth" : "noauth",
-        "udp" : true
-      },
-      "sniffing" : {
-        "destOverride" : [
-          "http",
-          "tls",
-          "quic",
-          "fakedns"
-        ],
-        "enabled" : false,
-        "routeOnly" : true
-      },
-      "tag" : "socks"
-    }
-  ],
-  "outbounds" : [
-    {
-      "protocol" : "shadowsocks",
-      "settings" : {
-        "servers" : [
-          {
-            "address" : "dh-cl1-sl158.mydom.top",
-            "method" : "chacha20-ietf-poly1305",
-            "password" : "ppzLeFdhjqV9m7JyX5WHuD",
-            "port" : 15811
-          }
-        ]
-      },
-      "streamSettings" : {
-        "network" : "tcp",
-        "tcpSettings" : {
-
+    "log": {
+        "level": "trace",
+        "timestamp": true
+    },
+    "inbounds": [{
+		"type": "mixed",
+		"tag": "mixed-in",
+		"listen": "127.0.0.1",
+		"listen_port": 1081,
+		"tcp_fast_open": true,
+		"sniff": true,
+		"sniff_override_destination": true,
+		"set_system_proxy": false
+	}, {
+		"type": "tun",
+		"tag": "tun-in",
+		"interface_name": "tun0",
+		"inet4_address": "172.19.0.1/30",
+		"inet6_address": "fdfe:dcba:9876::1/128",
+		"stack": "gvisor",
+		"mtu": 9000,
+		"auto_route": true,
+		"strict_route": false,
+		"endpoint_independent_nat": false,
+		"sniff": true,
+		"sniff_override_destination": true
+	}],
+    "outbounds": [
+        {
+            "type": "shadowsocks",
+            "tag": "shad",
+            "server": "dh-cl1-sl158.mydom.top",
+            "server_port": 15811,
+            "method": "chacha20-ietf-poly1305",
+            "password": "ppzLeF1dhjqV9m7JyX5WHuD"
         }
-      },
-      "tag" : "proxy"
-    },
-    {
-      "protocol" : "freedom",
-      "tag" : "direct"
-    },
-    {
-      "protocol" : "blackhole",
-      "tag" : "block"
+        ,
+        {
+            "type": "block",
+            "tag": "block"
+        }
+    ],
+    "route": {
+        "rules": [
+            {
+                "geoip": "cn",
+                "outbound": "block"
+            },
+            {
+                "geosite": "category-ads-all",
+                "outbound": "block"
+            }
+        ],
+        "final": "shad"
     }
-  ]
 }
         }
       ]
@@ -76,58 +79,61 @@
           "ipAddress": "ol-cl1-sl1.mydom.top",
           "vless_key": "vless://945098bf-d99f-41f3-a947-83c82a8a46f8@ol-cl1-sl1.mydom.top:443?flow=xtls-rprx-vision&type=tcp&security=reality&fp=chrome&sni=www.youtube.com&pbk=rVMwL16cTklX7YTJ6UiUuxOgw2zu_rjbzGkLaIcPeAE&sid=aba540ca49293d77&spx=#VPN1",
           "config": {
-  "inbounds" : [
-    {
-      "listen" : "127.0.0.1",
-      "port" : 1080,
-      "protocol" : "socks",
-      "settings" : {
-        "auth" : "noauth",
-        "udp" : true
-      },
-      "sniffing" : {
-        "destOverride" : [
-          "http",
-          "tls",
-          "quic",
-          "fakedns"
-        ],
-        "enabled" : false,
-        "routeOnly" : true
-      },
-      "tag" : "socks"
-    }
-  ],
-  "outbounds" : [
-    {
-      "protocol" : "shadowsocks",
-      "settings" : {
-        "servers" : [
-          {
-            "address" : "dh-cl1-sl110.mydom.top",
-            "method" : "chacha20-ietf-poly1305",
-            "password" : "ppzLeFdhjqV9m7JyX5WHuD",
-            "port" : 15811
-          }
-        ]
-      },
-      "streamSettings" : {
-        "network" : "tcp",
-        "tcpSettings" : {
-
+    "log": {
+        "level": "trace",
+        "timestamp": true
+    },
+    "inbounds": [{
+		"type": "mixed",
+		"tag": "mixed-in",
+		"listen": "127.0.0.1",
+		"listen_port": 1081,
+		"tcp_fast_open": true,
+		"sniff": true,
+		"sniff_override_destination": true,
+		"set_system_proxy": false
+	}, {
+		"type": "tun",
+		"tag": "tun-in",
+		"interface_name": "tun0",
+		"inet4_address": "172.19.0.1/30",
+		"inet6_address": "fdfe:dcba:9876::1/128",
+		"stack": "gvisor",
+		"mtu": 9000,
+		"auto_route": true,
+		"strict_route": false,
+		"endpoint_independent_nat": false,
+		"sniff": true,
+		"sniff_override_destination": true
+	}],
+    "outbounds": [
+        {
+            "type": "shadowsocks",
+            "tag": "shad",
+            "server": "dh-cl1-sl158.mydom.top",
+            "server_port": 15811,
+            "method": "chacha20-ietf-poly1305",
+            "password": "ppzLeF1dhjqV9m7JyX5WHuD"
         }
-      },
-      "tag" : "proxy"
-    },
-    {
-      "protocol" : "freedom",
-      "tag" : "direct"
-    },
-    {
-      "protocol" : "blackhole",
-      "tag" : "block"
+        ,
+        {
+            "type": "block",
+            "tag": "block"
+        }
+    ],
+    "route": {
+        "rules": [
+            {
+                "geoip": "cn",
+                "outbound": "block"
+            },
+            {
+                "geosite": "category-ads-all",
+                "outbound": "block"
+            }
+        ],
+        "final": "shad"
     }
-  ]
 }
         }
       ]
