@@ -1,0 +1,6 @@
+{
+  "method": "chacha20-ietf-poly1305",
+  "server_port": 13046,
+  "password": "YBCMLGolNKmfrKhpYsihg6",
+  "server": "dh-cl1-rus1.mydom.top"
+}
